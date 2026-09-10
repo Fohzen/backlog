@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backlog - Fohsen</title>
+<meta name="theme-color" content="#0d0a14">
+<style>html,body{margin:0;padding:0;background:#0d0a14}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+<style>
+#px{
+  --void:#0d0a14; --deep:#161226; --panel:#1e1932; --lift:#2a2444;
+  --line:#0a0812; --edge:#4b4173;
+  --text:#efe9ff; --dim:#9a8fc4; --faint:#6b6194;
+  --live:#7cf29a; --hold:#ffd166; --cold:#6fc3ff; --done:#7a7196; --hot:#ff6b7a;
+  background:var(--void); color:var(--text);
+  font-family:'VT323',monospace; font-size:19px; line-height:1.35;
+  padding:0 0 60px; min-height:100vh;
+  image-rendering:pixelated;
+  background-image:
+    linear-gradient(rgba(255,255,255,.014) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.014) 1px, transparent 1px);
+  background-size:4px 4px;
+}
+#px *{box-sizing:border-box;margin:0;padding:0}
+#px .p8{font-family:'Press Start 2P',monospace;letter-spacing:0}
+#px .wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+#px button{font:inherit;cursor:pointer;color:inherit;background:none;border:none}
+
+/* pixel frame */
+#px .fr{
+  background:var(--panel); border:3px solid var(--line);
+  box-shadow: inset 3px 3px 0 rgba(255,255,255,.05), inset -3px -3px 0 rgba(0,0,0,.45);
+}
+#px .btn{
+  background:var(--lift); border:3px solid var(--line); padding:6px 10px;
+  box-shadow: inset 2px 2px 0 rgba(255,255,255,.09), inset -2px -2px 0 rgba(0,0,0,.5);
+  font-family:'Press Start 2P',monospace; font-size:8px; color:var(--dim);
+  text-transform:uppercase; transition:none;
+}
+#px .btn:hover{color:var(--text);background:#332c52}
+#px .btn:active,#px .btn[aria-pressed="true"]{
+  box-shadow: inset -2px -2px 0 rgba(255,255,255,.06), inset 2px 2px 0 rgba(0,0,0,.5);
+  background:var(--edge); color:#fff;
+}
+
+/* header */
+#px .hd{border-bottom:3px solid var(--line);background:var(--deep);padding:22px 0 16px;margin-bottom:18px}
+#px .hd h1{font-family:'Press Start 2P',monospace;font-size:26px;color:var(--hold);
+  text-shadow:3px 3px 0 #7a4a00, 6px 6px 0 rgba(0,0,0,.5);margin-bottom:10px}
+#px .hd .tag{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--faint);margin-bottom:10px}
+#px .xp{margin-top:14px}
+#px .xp .lb{display:flex;justify-content:space-between;font-family:'Press Start 2P',monospace;font-size:8px;color:var(--dim);margin-bottom:5px}
+#px .xpbar{height:16px;background:var(--void);border:3px solid var(--line);padding:2px}
+#px .xpbar i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--hold) 0 6px,#e0b44a 6px 8px);width:0;transition:width .3s steps(12)}
+
+/* filters */
+#px .frow{margin-bottom:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#px .frow>.lab{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--faint);min-width:64px}
+#px .rail{display:flex;gap:5px;flex-wrap:wrap}
+
+/* lanes */
+#px .lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:12px;align-items:start;margin-top:16px}
+#px .lane{padding:0}
+#px .lane.off{display:none}
+#px .lh{padding:9px 11px;border-bottom:3px solid var(--line);display:flex;align-items:center;gap:8px;background:var(--deep)}
+#px .lh .dot{width:10px;height:10px;flex:0 0 10px}
+#px .lh h2{font-family:'Press Start 2P',monospace;font-size:9px}
+#px .lh .ct{margin-left:auto;font-family:'Press Start 2P',monospace;font-size:8px;color:var(--faint)}
+#px .lane[data-k="live"] .dot{background:var(--live)} #px .lane[data-k="live"] h2{color:var(--live)}
+#px .lane[data-k="hold"] .dot{background:var(--hold)} #px .lane[data-k="hold"] h2{color:var(--hold)}
+#px .lane[data-k="cold"] .dot{background:var(--cold)} #px .lane[data-k="cold"] h2{color:var(--cold)}
+#px .lane[data-k="done"] .dot{background:var(--done)} #px .lane[data-k="done"] h2{color:var(--done)}
+#px .lb2{padding:9px}
+
+/* card */
+#px .card{background:var(--lift);border:3px solid var(--line);padding:9px 10px;margin-bottom:8px;cursor:pointer;
+  box-shadow: inset 2px 2px 0 rgba(255,255,255,.05), inset -2px -2px 0 rgba(0,0,0,.4)}
+#px .card:last-child{margin-bottom:0}
+#px .card.hide{display:none}
+#px .card .nm{font-family:'Press Start 2P',monospace;font-size:9px;line-height:1.5;margin-bottom:5px}
+#px .card .st{font-size:18px;color:var(--dim);line-height:1.25}
+#px .tgs{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+#px .tg{font-family:'Press Start 2P',monospace;font-size:6px;padding:3px 4px;background:var(--panel);border:2px solid var(--line);color:var(--faint)}
+#px .bw{height:12px;background:var(--void);border:2px solid var(--line);margin-top:7px;padding:1px}
+#px .bw i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,currentColor 0 4px,transparent 4px 6px)}
+#px .lane[data-k="live"] .bw i{color:var(--live)} #px .lane[data-k="hold"] .bw i{color:var(--hold)}
+#px .lane[data-k="cold"] .bw i{color:var(--cold)} #px .lane[data-k="done"] .bw i{color:var(--done)}
+
+/* expanded */
+#px .exp{display:none;margin-top:9px;padding-top:9px;border-top:2px dashed var(--edge)}
+#px .card.open .exp{display:block}
+#px .exp .ttl{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--faint);margin:8px 0 5px}
+#px .exp textarea{width:100%;min-height:64px;background:var(--void);border:2px solid var(--line);color:var(--text);
+  font-family:'VT323',monospace;font-size:18px;line-height:1.3;padding:6px 7px;resize:vertical}
+#px .exp textarea:focus{outline:none;border-color:var(--edge)}
+#px .ctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+#px .ctl .pc{font-family:'Press Start 2P',monospace;font-size:9px;min-width:44px;text-align:center;color:var(--hold)}
+#px .mv{display:flex;gap:4px;flex-wrap:wrap}
+
+/* add */
+#px .add{margin-top:16px;padding:12px}
+#px .add h3{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--hold);margin-bottom:9px}
+#px .add .row{display:flex;gap:7px;flex-wrap:wrap}
+#px .add input{flex:1;min-width:150px;background:var(--void);border:2px solid var(--line);color:var(--text);
+  font-family:'VT323',monospace;font-size:18px;padding:6px 8px}
+#px .add input:focus{outline:none;border-color:var(--edge)}
+#px .save{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--faint);height:12px;margin-top:10px;text-align:right}
+#px .ft{text-align:center;color:var(--faint);font-size:17px;margin-top:22px}
+@media(max-width:620px){#px .hd h1{font-size:17px}}
+</style>
+
+</head>
+<body>
+<div id="px">
+  <div class="hd">
+    <div class="wrap">
+      <div class="tag">Bitacora Gamer // Fohsen</div>
+      <h1>BACKLOG</h1>
+      <div class="xp">
+        <div class="lb"><span>Progreso total</span><span id="xpn">0%</span></div>
+        <div class="xpbar"><i id="xpf"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="frow">
+      <span class="lab">Estado</span>
+      <div class="rail" id="rs"></div>
+    </div>
+    <div class="frow">
+      <span class="lab">Etiqueta</span>
+      <div class="rail" id="rt"></div>
+    </div>
+
+    <div class="lanes" id="lanes"></div>
+
+    <div class="fr add">
+      <h3>+ Agregar juego</h3>
+      <div class="row">
+        <input id="ni" placeholder="Nombre del juego" maxlength="48">
+        <input id="ti" placeholder="etiquetas: rpg, gfn, coop" maxlength="60">
+        <button class="btn" id="addb">Agregar</button>
+      </div>
+    </div>
+
+    <div class="save" id="mk"></div>
+    <div class="ft">Clic en una tarjeta para abrirla · edita nota, progreso y estado</div>
+  </div>
+</div>
+
+<script>
+(function(){
+const KEY='fohsen-backlog-px-v1';
+const LANES=[
+ {k:'live',t:'EN CURSO'},{k:'hold',t:'EN PAUSA'},
+ {k:'cold',t:'ENFRIANDOSE'},{k:'done',t:'CERRADOS'}
+];
+
+const SEED=[
+ {id:'khazan',l:'live',p:70,n:'The First Berserker: Khazan',tags:['souls','steam'],
+  s:'Nv.78 · Lanza · Capacidad 39, Voluntad 18',
+  x:'Farmear a Viper en Ruinas de Embars por las Garras de Monarca Caido. Comprar 3 a Danjin si ya tienes 18 Jarlings. Subir Capacidad a ~55 y Voluntad a ~35 rumbo al Nv.100.'},
+ {id:'dd2',l:'live',p:45,n:"Dragon's Dogma 2",tags:['rpg','steam'],
+  s:'Rhaenara · Lanza Mistica desbloqueada',
+  x:'El cuento de un mendigo: Kendrick en la Mano Bondadosa, los tres ninos, Malcolm en la biblioteca, sacar a Waldhar. Despues historia principal.'},
+ {id:'bfr',l:'live',p:12,n:'AC Black Flag Resynced',tags:['ubisoft','gfn'],
+  s:'Jackdaw conseguido · bug de mando en GFN',
+  x:'El mando llega al overlay de Ubisoft pero no al juego. Sin fix confirmado. Revisar si salio parche antes de retomar.'},
+ {id:'cp77',l:'live',p:55,n:'Cyberpunk 2077',tags:['rpg','gfn'],
+  s:'Nv.40 · katana + Sandevistan · Chippin In hecho',
+  x:'Cerrar arco de Judy, despues Phantom Liberty completo, luego Panam y Rogue. Hanako al final de todo.'},
+
+ {id:'kcd2',l:'hold',p:60,n:'Kingdom Come Deliverance 2',tags:['rpg','gfn'],
+  s:'Ruta fantasma tomada · rumbo a Kuttenberg',
+  x:'Tras La Espada y la Pluma puedes volver a Trosky por 200 groschen. Demons of Trosky probablemente perdida.'},
+ {id:'cd',l:'hold',p:35,n:'Crimson Desert',tags:['accion','gfn'],
+  s:'Cap.3 · Nv.12 · 39 Artefactos · Golpe Fantasma',
+  x:'Agarre y Lariat, despues Maniobra Aerea. Meta media: montura Silver Fang via facciones de Hernand.'},
+ {id:'sf',l:'hold',p:30,n:'Starfield',tags:['rpg','mods','gfn'],
+  s:'Dusk · Beast Hunter · Razorleaf · outpost en Jemison',
+  x:'Sin tocar: INTO THE UNKNOWN y THE EMPTY NEST. Arco: UC Vanguard, Freestar, Ryujin, Crimson Fleet.'},
+ {id:'dav',l:'hold',p:25,n:'Dragon Age Veilguard',tags:['rpg','ea'],
+  s:'Rhaenara Duelista · Dragones Sombrios',
+  x:'Meta: Arainais Talon en Crossroads. A Thousand Cuts mas 10 stacks de sangrado = build rota.'},
+ {id:'ms2',l:'hold',p:2,n:'Mortal Shell II',tags:['souls','steam','gfn'],
+  s:'Comprado · sin sesion reportada',
+  x:'Sin barra de stamina, juega agresivo. Endurecer es ritmo, no emergencia. Prueba varios Shells antes de casarte con uno.'},
+ {id:'nms',l:'hold',p:40,n:'No Mans Sky',tags:['coop','barbi'],
+  s:'Hiperturbo sincronizado · economia resuelta',
+  x:'Objetivo con Barbi: sistema estrella G, planeta Exuberante u Oceanico, vigilantes bajos. Base estetica con vista al agua.'},
+
+ {id:'d4',l:'cold',p:20,n:'Diablo IV',tags:['arpg'],
+  s:'Nigromante · build Monarca de las Sombras',
+  x:'Magos de Sombra, Segadores y Explosion de Cadaveres era el plan. Sin seguimiento desde hace tiempo.'},
+ {id:'swo',l:'cold',p:18,n:'Star Wars Outlaws',tags:['ubisoft','gfn'],
+  s:'Explorando Toshara',
+  x:'Ahora incluido en tu Ubisoft+ con ediciones premium. Retomarlo sale gratis.'},
+ {id:'mc',l:'cold',p:45,n:'Minecraft BigChadGuys+',tags:['coop','barbi'],
+  s:'Con Cobblemon · andando en Aternos',
+  x:'Alternativa: exportar server pack de CurseForge mas playit.gg para hostear local sin colas.'},
+ {id:'clv',l:'cold',p:30,n:'CloverPit',tags:['roguelite','steam'],
+  s:'Deadline 8 · 362k monedas',
+  x:'Correcciones sin aplicar: comprometer un solo simbolo, charm de remocion, Wood and Bricks para el puente de interes.'},
+ {id:'mgb',l:'cold',p:15,n:'Megabonk',tags:['roguelite','steam'],
+  s:'Build de Noelle o Fox sugerida',
+  x:'Katana, Dexecutioner y Flamewalker. Tomos Damage, Cursed, XP y Chaos. Desbloquear slots antes que personajes.'},
+ {id:'tbh',l:'cold',p:50,n:'Taskbar Hero',tags:['idle'],
+  s:'Nv.65 · Caballero',
+  x:'El juego que definio tu criterio de loot con peso. Vale la pena volver de vez en cuando.'},
+ {id:'ds',l:'cold',p:5,n:'Death Stranding',tags:['epic','gfn'],
+  s:'Descubierto en la biblioteca',
+  x:'No es ARPG ni tiene loot con peso. Dale hasta el segundo episodio antes de juzgar.'},
+ {id:'dai',l:'cold',p:0,n:'Dragon Age Inquisition',tags:['rpg','ea'],
+  s:'Gratis en EA Play · nunca iniciado',
+  x:'Sal del Hinterlands rapido, es la trampa que quema a todos. Elfo picaro asesino era el plan.'},
+ {id:'idl',l:'cold',p:35,n:'Idle Slayer',tags:['idle'],
+  s:'Jugado un rato, quedo atras',
+  x:'Sin plan activo.'},
+
+ {id:'er',l:'done',p:90,n:'Elden Ring + DLC',tags:['souls'],
+  s:'Malenia caida · DLC hasta Consorte Radahn',
+  x:'Interrumpido por el equipo, no por falta de ganas.'},
+ {id:'sm2',l:'done',p:100,n:'Space Marine 2',tags:['accion'],
+  s:'Jugado y disfrutado',
+  x:'Descartado como referencia de genero: es shooter-brawler, no ARPG de progresion.'}
+];
+
+let items=SEED.map(o=>({...o}));
+let fS='all', fT='all';
+const $=s=>document.querySelector(s);
+const mk=$('#mk'); let ft=null, st=null;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function flash(m){mk.textContent=m;clearTimeout(ft);ft=setTimeout(()=>mk.textContent='',1500)}
+/* ---- Guardado local del navegador ---- */
+async function put(){try{localStorage.setItem(KEY,JSON.stringify(items));flash('Guardado');}catch(e){flash('Error al guardar')}}
+function save(){clearTimeout(st);st=setTimeout(put,300)}
+async function pull(){try{const v=localStorage.getItem(KEY);if(v){const d=JSON.parse(v);if(Array.isArray(d)&&d.length)items=d;}}catch(e){}}
+
+function tagList(){return [...new Set(items.flatMap(i=>i.tags))].sort()}
+
+function buildRails(){
+  $('#rs').innerHTML=`<button class="btn" data-s="all" aria-pressed="${fS==='all'}">Todos</button>`+
+    LANES.map(L=>`<button class="btn" data-s="${L.k}" aria-pressed="${fS===L.k}">${L.t}</button>`).join('');
+  $('#rt').innerHTML=`<button class="btn" data-t="all" aria-pressed="${fT==='all'}">Todas</button>`+
+    tagList().map(t=>`<button class="btn" data-t="${esc(t)}" aria-pressed="${fT===t}">${esc(t)}</button>`).join('');
+}
+
+function render(){
+  const open=[...document.querySelectorAll('.card.open')].map(c=>c.dataset.id);
+  $('#lanes').innerHTML=LANES.map(L=>{
+    const list=items.filter(i=>i.l===L.k && (fT==='all'||i.tags.includes(fT)));
+    return `<section class="lane fr ${fS!=='all'&&fS!==L.k?'off':''}" data-k="${L.k}">
+      <div class="lh"><span class="dot"></span><h2>${L.t}</h2><span class="ct">${list.length}</span></div>
+      <div class="lb2">${list.length?list.map(i=>`
+        <article class="card ${open.includes(i.id)?'open':''}" data-id="${i.id}">
+          <div class="nm">${esc(i.n)}</div>
+          <div class="st">${esc(i.s)}</div>
+          <div class="tgs">${i.tags.map(t=>`<span class="tg">${esc(t)}</span>`).join('')}</div>
+          <div class="bw"><i style="width:${i.p}%"></i></div>
+          <div class="exp">
+            <div class="ttl">Siguiente paso</div>
+            <textarea data-x="${i.id}">${esc(i.x)}</textarea>
+            <div class="ttl">Progreso</div>
+            <div class="ctl">
+              <button class="btn" data-d="-5" data-p="${i.id}">-5</button>
+              <span class="pc">${i.p}%</span>
+              <button class="btn" data-d="5" data-p="${i.id}">+5</button>
+            </div>
+            <div class="ttl">Mover a</div>
+            <div class="mv">${LANES.filter(x=>x.k!==i.l).map(x=>
+              `<button class="btn" data-m="${i.id}" data-l="${x.k}">${x.t}</button>`).join('')}
+              <button class="btn" data-del="${i.id}">Borrar</button></div>
+          </div>
+        </article>`).join(''):'<div style="color:var(--faint);font-size:17px;padding:6px 2px">Vacio</div>'}
+      </div></section>`;
+  }).join('');
+
+  const tot=items.length?Math.round(items.reduce((a,b)=>a+b.p,0)/items.length):0;
+  $('#xpf').style.width=tot+'%'; $('#xpn').textContent=tot+'%';
+}
+
+$('#lanes').addEventListener('click',e=>{
+  const t=e.target;
+  const pb=t.closest('[data-p]');
+  if(pb){const it=items.find(i=>i.id===pb.dataset.p);it.p=Math.max(0,Math.min(100,it.p+ +pb.dataset.d));render();save();return}
+  const mb=t.closest('[data-m]');
+  if(mb){const it=items.find(i=>i.id===mb.dataset.m);it.l=mb.dataset.l;render();save();return}
+  const db=t.closest('[data-del]');
+  if(db){items=items.filter(i=>i.id!==db.dataset.del);buildRails();render();save();return}
+  if(t.tagName==='TEXTAREA')return;
+  const c=t.closest('.card'); if(c)c.classList.toggle('open');
+});
+$('#lanes').addEventListener('input',e=>{
+  const x=e.target.dataset.x; if(!x)return;
+  const it=items.find(i=>i.id===x); it.x=e.target.value; save();
+});
+$('#rs').addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(!b)return;fS=b.dataset.s;buildRails();render()});
+$('#rt').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;fT=b.dataset.t;buildRails();render()});
+$('#addb').addEventListener('click',()=>{
+  const n=$('#ni').value.trim(); if(!n)return;
+  const tg=$('#ti').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
+  items.unshift({id:'g'+Date.now(),l:'cold',p:0,n,tags:tg.length?tg:['nuevo'],s:'Recien agregado',x:'Sin notas todavia.'});
+  $('#ni').value='';$('#ti').value='';
+  buildRails();render();save();
+});
+
+pull().then(()=>{buildRails();render()});
+})();
+</script>
+
+</body>
+</html>
