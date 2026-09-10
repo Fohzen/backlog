@@ -26,7 +26,6 @@
   background-size:4px 4px;
 }
 #px *{box-sizing:border-box;margin:0;padding:0}
-#px .p8{font-family:'Press Start 2P',monospace;letter-spacing:0}
 #px .wrap{max-width:1160px;margin:0 auto;padding:0 16px}
 #px button{font:inherit;cursor:pointer;color:inherit;background:none;border:none}
 
@@ -46,6 +45,8 @@
   box-shadow: inset -2px -2px 0 rgba(255,255,255,.06), inset 2px 2px 0 rgba(0,0,0,.5);
   background:var(--edge); color:#fff;
 }
+#px .btn[disabled]{opacity:.45;cursor:default}
+#px .btn[disabled]:hover{background:var(--lift);color:var(--dim)}
 
 /* header */
 #px .hd{border-bottom:3px solid var(--line);background:var(--deep);padding:22px 0 16px;margin-bottom:18px}
@@ -58,55 +59,70 @@
 #px .xpbar{height:16px;background:var(--void);border:3px solid var(--line);padding:2px}
 #px .xpbar i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--hold) 0 6px,#e0b44a 6px 8px);width:0;transition:width .3s steps(12)}
 
+/* aviso de almacenamiento */
+#px .warn{background:#3a1420;border:3px solid var(--hot);padding:11px 13px;margin-bottom:16px}
+#px .warn b{display:block;font-family:'Press Start 2P',monospace;font-size:9px;color:var(--hot);margin-bottom:7px}
+#px .warn span{font-size:18px;color:#ffd9de}
+
 /* rotulo de seccion */
 #px .sect{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--faint);
   display:flex;align-items:center;gap:9px;margin:0 0 9px}
 #px .sect:after{content:'';flex:1;height:3px;background:var(--line)}
 #px .sect b{color:var(--dim);font-weight:normal}
+#px .sect .btn{font-size:7px;padding:5px 8px}
 
-/* ---------- DASHBOARD ---------- */
-#px .dash{margin-bottom:26px}
-#px .dgrid{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:12px;align-items:start}
-@media(max-width:760px){#px .dgrid{grid-template-columns:1fr}}
-
-/* experiencia actual */
-#px .cur{padding:12px;cursor:pointer;text-align:left;width:100%;display:block}
-#px .cur.on{border-color:var(--edge)}
-#px .cur .knm{font-family:'Press Start 2P',monospace;font-size:11px;line-height:1.65;color:var(--live);margin-bottom:7px}
-#px .cur .ksub{font-size:18px;color:var(--dim);margin-bottom:8px}
-#px .cur .kpct{font-family:'Press Start 2P',monospace;font-size:22px;color:var(--hold);margin:10px 0 7px}
-#px .cur .khint{font-family:'Press Start 2P',monospace;font-size:6px;color:var(--faint);margin-top:9px}
-#px .cur .none{color:var(--faint);font-size:17px;padding:10px 0}
-
-/* mundos recientes */
-#px .worlds{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px}
-#px .world{padding:9px;cursor:pointer;text-align:left;display:block;width:100%}
-#px .world.on{border-color:var(--edge)}
-#px .world .wn{font-family:'Press Start 2P',monospace;font-size:7px;line-height:1.75;margin-bottom:6px}
-#px .world .wm{font-size:16px;color:var(--faint)}
-#px .world .wb{height:9px;background:var(--void);border:2px solid var(--line);margin-top:7px;padding:1px}
-#px .world .wb i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--cold) 0 4px,transparent 4px 6px)}
-#px .worlds .none{color:var(--faint);font-size:17px;grid-column:1/-1}
-
-/* pantalla profunda */
-#px .screen{display:none;margin-top:12px;padding:13px}
-#px .screen.open{display:block}
-#px .sch{display:flex;align-items:flex-start;gap:10px;border-bottom:3px solid var(--line);padding-bottom:11px;margin-bottom:13px}
-#px .sch .n1{font-family:'Press Start 2P',monospace;font-size:13px;line-height:1.6;color:var(--hold)}
-#px .sch .n2{font-size:18px;color:var(--dim);margin-top:6px}
-#px .sch .nx{margin-left:auto;flex:0 0 auto}
-#px .scg{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
-#px .ttl{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--faint);margin:0 0 7px}
-#px .blk{margin-bottom:15px}
+/* ---------- HERO: experiencia actual ---------- */
+#px .dash{margin-bottom:24px}
+#px .hero{padding:14px;margin-bottom:20px}
+#px .hh{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;
+  border-bottom:3px solid var(--line);padding-bottom:12px;margin-bottom:13px}
+#px .hh .hn{font-family:'Press Start 2P',monospace;font-size:17px;line-height:1.55;color:var(--hold);
+  text-shadow:2px 2px 0 rgba(0,0,0,.55)}
+#px .hh .hs{font-size:19px;color:var(--dim);margin-top:7px}
+#px .hh .hr{margin-left:auto;text-align:right;flex:0 0 auto}
+#px .hh .hp{font-family:'Press Start 2P',monospace;font-size:26px;color:var(--live);
+  text-shadow:2px 2px 0 rgba(0,0,0,.55)}
+#px .hh .hl{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--faint);margin-top:8px}
+#px .hero .empty{color:var(--faint);font-size:18px;padding:12px 2px}
+#px .hgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+#px .blk{margin-bottom:16px}
 #px .blk:last-child{margin-bottom:0}
-#px .bigbar{height:22px;background:var(--void);border:3px solid var(--line);padding:2px;margin-bottom:8px}
+#px .ttl{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--faint);margin:0 0 8px}
+#px .bigbar{height:22px;background:var(--void);border:3px solid var(--line);padding:2px;margin-bottom:9px}
 #px .bigbar i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--hold) 0 6px,#e0b44a 6px 8px)}
+#px .ctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+#px .ctl .pc{font-family:'Press Start 2P',monospace;font-size:9px;min-width:44px;text-align:center;color:var(--hold)}
+#px .mv{display:flex;gap:5px;flex-wrap:wrap}
+
+/* ficha estructurada */
+#px .ficha{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:7px}
+#px .fld{background:var(--void);border:2px solid var(--line);padding:6px 7px}
+#px .fld b{display:block;font-family:'Press Start 2P',monospace;font-size:6px;color:var(--faint);
+  font-weight:normal;margin-bottom:5px;line-height:1.5}
+#px .fld input{width:100%;background:none;border:none;color:var(--text);
+  font-family:'VT323',monospace;font-size:18px;padding:0}
+#px .fld input:focus{outline:none;color:var(--hold)}
+#px .fld input::placeholder{color:var(--faint)}
+
+/* nota personal */
+#px .score{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#px .sqs{display:flex;gap:3px}
+#px .sq{width:19px;height:19px;background:var(--void);border:2px solid var(--line);padding:0}
+#px .sq.on{background:var(--hold);box-shadow:inset 2px 2px 0 rgba(255,255,255,.25)}
+#px .sq:hover{border-color:var(--edge)}
+#px .sv{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--hold);min-width:52px}
+#px .sv.none{color:var(--faint);font-size:8px}
+
+/* estadisticas */
 #px .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px}
 #px .stat{background:var(--void);border:2px solid var(--line);padding:7px 8px;position:relative}
-#px .stat b{display:block;font-family:'Press Start 2P',monospace;font-size:6px;color:var(--faint);font-weight:normal;margin-bottom:6px;line-height:1.5}
+#px .stat b{display:block;font-family:'Press Start 2P',monospace;font-size:6px;color:var(--faint);
+  font-weight:normal;margin-bottom:6px;line-height:1.5}
 #px .stat span{font-size:18px;color:var(--text);word-break:break-word}
 #px .stat .rm{position:absolute;top:1px;right:3px;font-size:16px;color:var(--faint);line-height:1}
 #px .stat .rm:hover{color:var(--hot)}
+
+/* enlaces */
 #px .lks{display:flex;gap:6px;flex-wrap:wrap}
 #px .lk{display:inline-flex;align-items:center;gap:7px;background:var(--lift);border:3px solid var(--line);padding:6px 8px;
   box-shadow: inset 2px 2px 0 rgba(255,255,255,.09), inset -2px -2px 0 rgba(0,0,0,.5)}
@@ -114,29 +130,34 @@
 #px .lk a:hover{color:#fff;text-decoration:underline}
 #px .lk .rm{font-size:16px;color:var(--faint);line-height:1}
 #px .lk .rm:hover{color:var(--hot)}
-#px .lks .none{color:var(--faint);font-size:17px}
+#px .none{color:var(--faint);font-size:17px}
+
+/* mini formularios */
 #px .mini{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
 #px .mini input{flex:1;min-width:88px;background:var(--void);border:2px solid var(--line);color:var(--text);
   font-family:'VT323',monospace;font-size:17px;padding:5px 7px}
 #px .mini input:focus{outline:none;border-color:var(--edge)}
-#px .screen textarea{width:100%;min-height:76px;background:var(--void);border:2px solid var(--line);color:var(--text);
+#px .hero textarea{width:100%;min-height:82px;background:var(--void);border:2px solid var(--line);color:var(--text);
   font-family:'VT323',monospace;font-size:18px;line-height:1.35;padding:7px 8px;resize:vertical}
-#px .screen textarea:focus{outline:none;border-color:var(--edge)}
-#px .ctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-#px .ctl .pc{font-family:'Press Start 2P',monospace;font-size:9px;min-width:44px;text-align:center;color:var(--hold)}
-#px .mv{display:flex;gap:4px;flex-wrap:wrap}
+#px .hero textarea:focus{outline:none;border-color:var(--edge)}
+
+/* mundos recientes */
+#px .worlds{display:grid;grid-template-columns:repeat(auto-fill,minmax(136px,1fr));gap:7px}
+#px .world{padding:8px;cursor:pointer;text-align:left;display:block;width:100%}
+#px .world.on{border-color:var(--hold)}
+#px .world .wn{font-family:'Press Start 2P',monospace;font-size:6px;line-height:1.8;margin-bottom:5px}
+#px .world .wm{font-size:15px;color:var(--faint)}
+#px .world .wb{height:8px;background:var(--void);border:2px solid var(--line);margin-top:6px;padding:1px}
+#px .world .wb i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--cold) 0 4px,transparent 4px 6px)}
 
 /* ---------- BACKLOG ---------- */
-/* filters */
 #px .frow{margin-bottom:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 #px .frow>.lab{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--faint);min-width:64px}
 #px .rail{display:flex;gap:5px;flex-wrap:wrap}
 #px .qi{background:var(--void);border:2px solid var(--line);color:var(--text);
   font-family:'VT323',monospace;font-size:18px;padding:5px 9px;min-width:200px}
 #px .qi:focus{outline:none;border-color:var(--edge)}
-#px .qn{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--faint)}
 
-/* lanes */
 #px .lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:12px;align-items:start;margin-top:16px}
 #px .lane{padding:0}
 #px .lane.off{display:none}
@@ -153,14 +174,13 @@
 #px .morebar .btn{width:100%;padding:7px 6px;color:var(--faint)}
 #px .morebar .btn:hover{color:var(--text)}
 
-/* card */
 #px .card{background:var(--lift);border:3px solid var(--line);padding:9px 10px;margin-bottom:8px;cursor:pointer;
   box-shadow: inset 2px 2px 0 rgba(255,255,255,.05), inset -2px -2px 0 rgba(0,0,0,.4)}
 #px .card:last-child{margin-bottom:0}
-#px .card.hide{display:none}
 #px .card.now{border-color:var(--live)}
 #px .card .nm{font-family:'Press Start 2P',monospace;font-size:9px;line-height:1.5;margin-bottom:5px}
 #px .card .st{font-size:18px;color:var(--dim);line-height:1.25}
+#px .card .mt{font-size:16px;color:var(--faint);margin-top:5px}
 #px .tgs{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
 #px .tg{font-family:'Press Start 2P',monospace;font-size:6px;padding:3px 4px;background:var(--panel);border:2px solid var(--line);color:var(--faint)}
 #px .bw{height:12px;background:var(--void);border:2px solid var(--line);margin-top:7px;padding:1px}
@@ -168,17 +188,13 @@
 #px .lane[data-k="live"] .bw i{color:var(--live)} #px .lane[data-k="hold"] .bw i{color:var(--hold)}
 #px .lane[data-k="cold"] .bw i{color:var(--cold)} #px .lane[data-k="done"] .bw i{color:var(--done)}
 
-/* expanded */
 #px .exp{display:none;margin-top:9px;padding-top:9px;border-top:2px dashed var(--edge)}
 #px .card.open .exp{display:block}
-#px .exp .ttl{margin:8px 0 5px}
-#px .exp textarea{width:100%;min-height:64px;background:var(--void);border:2px solid var(--line);color:var(--text);
-  font-family:'VT323',monospace;font-size:18px;line-height:1.3;padding:6px 7px;resize:vertical}
-#px .exp textarea:focus{outline:none;border-color:var(--edge)}
+#px .exp .ttl{margin:0 0 6px}
 #px .swap{width:100%;margin-top:9px;color:var(--cold)}
 #px .swap:hover{color:#fff;background:var(--edge)}
-#px .swap[disabled]{color:var(--live);cursor:default}
-#px .swap[disabled]:hover{background:var(--lift)}
+#px .swap[disabled]{color:var(--live);opacity:1}
+#px .swap[disabled]:hover{background:var(--lift);color:var(--live)}
 
 /* add */
 #px .add{margin-top:16px;padding:12px}
@@ -187,9 +203,21 @@
 #px .add input{flex:1;min-width:150px;background:var(--void);border:2px solid var(--line);color:var(--text);
   font-family:'VT323',monospace;font-size:18px;padding:6px 8px}
 #px .add input:focus{outline:none;border-color:var(--edge)}
-#px .save{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--faint);height:12px;margin-top:10px;text-align:right}
-#px .ft{text-align:center;color:var(--faint);font-size:17px;margin-top:22px}
-@media(max-width:620px){#px .hd h1{font-size:15px}#px .sch .n1{font-size:11px}}
+
+/* ---------- barra de datos ---------- */
+#px .databar{margin-top:22px;padding:12px 13px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+#px .databar .dbi b{display:block;font-family:'Press Start 2P',monospace;font-size:8px;color:var(--dim);margin-bottom:6px}
+#px .databar .dbi span{font-size:17px;color:var(--faint)}
+#px .databar .dbi span.ok{color:var(--live)}
+#px .databar .dbi span.bad{color:var(--hot)}
+#px .databar .dbb{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+#px .ft{text-align:center;color:var(--faint);font-size:17px;margin-top:20px}
+@media(max-width:620px){
+  #px .hd h1{font-size:15px}
+  #px .hh .hn{font-size:12px}
+  #px .hh .hr{margin-left:0;text-align:left}
+  #px .databar .dbb{margin-left:0}
+}
 </style>
 
 </head>
@@ -208,19 +236,18 @@
 
   <div class="wrap">
 
+    <div class="warn" id="warn" hidden>
+      <b>&#9888; El guardado automatico no funciona</b>
+      <span id="warnt"></span>
+    </div>
+
     <!-- ============ DASHBOARD ============ -->
     <div class="dash" id="dash">
-      <div class="dgrid">
-        <div>
-          <div class="sect">Experiencia actual</div>
-          <button class="fr cur" id="cur"></button>
-        </div>
-        <div>
-          <div class="sect">Mundos recientes</div>
-          <div class="worlds" id="worlds"></div>
-        </div>
-      </div>
-      <section class="fr screen" id="screen"></section>
+      <div class="sect" id="hsect">Experiencia actual</div>
+      <section class="fr hero" id="hero"></section>
+
+      <div class="sect">Mundos recientes</div>
+      <div class="worlds" id="worlds"></div>
     </div>
 
     <!-- ============ BACKLOG ============ -->
@@ -250,24 +277,49 @@
       </div>
     </div>
 
-    <div class="save" id="mk"></div>
-    <div class="ft">Clic en una tarjeta para abrirla &middot; usa &quot;Cambiar de universo&quot; para llevarla al panel</div>
+    <!-- ============ DATOS ============ -->
+    <section class="fr databar">
+      <div class="dbi">
+        <b>Tus datos</b>
+        <span id="dbs">Cargando...</span>
+      </div>
+      <div class="dbb">
+        <button class="btn" id="expb">&#8681; Exportar respaldo</button>
+        <button class="btn" id="impb">&#8679; Importar respaldo</button>
+        <button class="btn" id="rstb" disabled>&#8634; Restaurar copia</button>
+        <input type="file" id="imp" accept=".json,application/json" hidden>
+      </div>
+    </section>
+
+    <div class="ft">El backlog es para encontrar &middot; el panel de arriba es para jugar y anotar</div>
   </div>
 </div>
 
 <script>
 (function(){
 const KEY='fohsen-backlog-px-v1';
+const PREV=KEY+'-prev';
 const LANES=[
  {k:'live',t:'EN CURSO'},{k:'hold',t:'EN PAUSA'},
  {k:'cold',t:'ENFRIANDOSE'},{k:'done',t:'CERRADOS'}
 ];
 const CAP=5;
-const RECENT=6;
+const RECENT=7;
 const D=86400000, NOW=Date.now();
+
+/* Campos estructurados de la ficha. Si manana quieres uno mas, se agrega aqui
+   y aparece solo en la interfaz. */
+const FIELDS=[
+ {f:'dev',  t:'DESARROLLADOR', ph:'ej: FromSoftware'},
+ {f:'year', t:'ANO',           ph:'ej: 2022'},
+ {f:'plat', t:'PLATAFORMA',    ph:'ej: Steam'},
+ {f:'saga', t:'SAGA',          ph:'ej: Dark Souls'},
+ {f:'hours',t:'HORAS',         ph:'0', num:true}
+];
 
 const SEED=[
  {id:'khazan',l:'live',p:70,n:'The First Berserker: Khazan',tags:['souls','steam'],last:NOW-1*D,
+  dev:'Neople',year:'2025',plat:'Steam',saga:'Dungeon Fighter',hours:0,score:0,
   s:'Nv.78 · Lanza · Capacidad 39, Voluntad 18',
   x:'Farmear a Viper en Ruinas de Embars por las Garras de Monarca Caido. Comprar 3 a Danjin si ya tienes 18 Jarlings. Subir Capacidad a ~55 y Voluntad a ~35 rumbo al Nv.100.',
   lore:'Khazan fue el general mas temido del Imperio Pell Los Nueve. Lo acusaron de traicion, le rompieron los tendones y lo dejaron morir en la nieve. Lo que bajo de esa montana ya no era del todo humano: Blade Phantom vive dentro de el y cobra su parte.',
@@ -275,6 +327,7 @@ const SEED=[
   links:[{t:'Wiki',u:'https://thefirstberserkerkhazan.wiki.fextralife.com/'}]},
 
  {id:'dd2',l:'live',p:45,n:"Dragon's Dogma 2",tags:['rpg','steam'],last:NOW-3*D,
+  dev:'Capcom',year:'2024',plat:'Steam',saga:"Dragon's Dogma",hours:0,score:0,
   s:'Rhaenara · Lanza Mistica desbloqueada',
   x:'El cuento de un mendigo: Kendrick en la Mano Bondadosa, los tres ninos, Malcolm en la biblioteca, sacar a Waldhar. Despues historia principal.',
   lore:'Eres el Arisen. El dragon te arranco el corazon y te dejo vivo, y esa marca es la razon por la que los Peones cruzan el rift para seguirte. Ninguno de ellos sabe explicar por que.',
@@ -282,6 +335,7 @@ const SEED=[
   links:[{t:'Mapa',u:'https://mapgenie.io/dragons-dogma-2'},{t:'Wiki',u:'https://dragonsdogma2.wiki.fextralife.com/'}]},
 
  {id:'bfr',l:'live',p:12,n:'AC Black Flag Resynced',tags:['ubisoft','gfn'],last:NOW-11*D,
+  dev:'Ubisoft',year:'',plat:'GeForce Now',saga:"Assassin's Creed",hours:0,score:0,
   s:'Jackdaw conseguido · bug de mando en GFN',
   x:'El mando llega al overlay de Ubisoft pero no al juego. Sin fix confirmado. Revisar si salio parche antes de retomar.',
   lore:'Caribe, 1715. El mar todavia no es de ningun imperio. Edward Kenway no busca un credo ni una causa: busca oro, y se tropieza con una guerra de mil anos que no le interesa.',
@@ -289,6 +343,7 @@ const SEED=[
   links:[]},
 
  {id:'cp77',l:'live',p:55,n:'Cyberpunk 2077',tags:['rpg','gfn'],last:NOW-6*D,
+  dev:'CD Projekt Red',year:'2020',plat:'GeForce Now',saga:'Cyberpunk',hours:0,score:0,
   s:'Nv.40 · katana + Sandevistan · Chippin In hecho',
   x:'Cerrar arco de Judy, despues Phantom Liberty completo, luego Panam y Rogue. Hanako al final de todo.',
   lore:'Night City te mata de dos formas: rapido en un callejon o lento en una torre corporativa. V eligio la segunda sin querer, y ahora Johnny Silverhand vive en su cabeza y no piensa callarse.',
@@ -296,6 +351,7 @@ const SEED=[
   links:[{t:'Mapa',u:'https://mapgenie.io/cyberpunk-2077'},{t:'Wiki',u:'https://cyberpunk.fandom.com/wiki/Cyberpunk_2077'}]},
 
  {id:'kcd2',l:'hold',p:60,n:'Kingdom Come Deliverance 2',tags:['rpg','gfn'],last:NOW-16*D,
+  dev:'Warhorse Studios',year:'2025',plat:'GeForce Now',saga:'Kingdom Come',hours:0,score:0,
   s:'Ruta fantasma tomada · rumbo a Kuttenberg',
   x:'Tras La Espada y la Pluma puedes volver a Trosky por 200 groschen. Demons of Trosky probablemente perdida.',
   lore:'Bohemia, 1403. No eres el elegido ni el heredero de nadie: eres el hijo de un herrero que sobrevivio a una masacre y aprendio a leer tarde. Todo lo que sabes hacer te costo horas reales.',
@@ -303,6 +359,7 @@ const SEED=[
   links:[{t:'Mapa',u:'https://mapgenie.io/kingdom-come-deliverance-2'}]},
 
  {id:'cd',l:'hold',p:35,n:'Crimson Desert',tags:['accion','gfn'],last:NOW-21*D,
+  dev:'Pearl Abyss',year:'',plat:'GeForce Now',saga:'',hours:0,score:0,
   s:'Cap.3 · Nv.12 · 39 Artefactos · Golpe Fantasma',
   x:'Agarre y Lariat, despues Maniobra Aerea. Meta media: montura Silver Fang via facciones de Hernand.',
   lore:'Pywel es un continente partido en clanes que se venden al mejor postor. Kliff lidera a los Greymanes porque nadie mas quiso el puesto.',
@@ -310,6 +367,7 @@ const SEED=[
   links:[]},
 
  {id:'sf',l:'hold',p:30,n:'Starfield',tags:['rpg','mods','gfn'],last:NOW-28*D,
+  dev:'Bethesda Game Studios',year:'2023',plat:'GeForce Now',saga:'',hours:0,score:0,
   s:'Dusk · Beast Hunter · Razorleaf · outpost en Jemison',
   x:'Sin tocar: INTO THE UNKNOWN y THE EMPTY NEST. Arco: UC Vanguard, Freestar, Ryujin, Crimson Fleet.',
   lore:'Ano 2330. La humanidad se disperso entre las estrellas y encontro artefactos que nadie sabe leer. Constellation es el ultimo grupo que todavia cree que vale la pena averiguar que son.',
@@ -317,6 +375,7 @@ const SEED=[
   links:[{t:'Mapa',u:'https://mapgenie.io/starfield'}]},
 
  {id:'dav',l:'hold',p:25,n:'Dragon Age Veilguard',tags:['rpg','ea'],last:NOW-34*D,
+  dev:'BioWare',year:'2024',plat:'EA Play',saga:'Dragon Age',hours:0,score:0,
   s:'Rhaenara Duelista · Dragones Sombrios',
   x:'Meta: Arainais Talon en Crossroads. A Thousand Cuts mas 10 stacks de sangrado = build rota.',
   lore:'El Velo es lo unico que separa a Thedas del Fade, y Solas lleva siglos tratando de derribarlo para devolverle el mundo a los elfos. Esta vez casi lo logra.',
@@ -324,6 +383,7 @@ const SEED=[
   links:[]},
 
  {id:'ms2',l:'hold',p:2,n:'Mortal Shell II',tags:['souls','steam','gfn'],last:NOW-9*D,
+  dev:'Cold Symmetry',year:'',plat:'Steam',saga:'Mortal Shell',hours:0,score:0,
   s:'Comprado · sin sesion reportada',
   x:'Sin barra de stamina, juega agresivo. Endurecer es ritmo, no emergencia. Prueba varios Shells antes de casarte con uno.',
   lore:'No tienes cuerpo propio. Eres algo pequeno y palido que habita los cascarones de guerreros muertos y hereda su memoria muscular junto con sus traumas.',
@@ -331,6 +391,7 @@ const SEED=[
   links:[]},
 
  {id:'nms',l:'hold',p:40,n:'No Mans Sky',tags:['coop','barbi'],last:NOW-5*D,
+  dev:'Hello Games',year:'2016',plat:'Steam',saga:'',hours:0,score:0,
   s:'Hiperturbo sincronizado · economia resuelta',
   x:'Objetivo con Barbi: sistema estrella G, planeta Exuberante u Oceanico, vigilantes bajos. Base estetica con vista al agua.',
   lore:'El Atlas late en el centro de la galaxia y todos los viajeros terminan caminando hacia el. Nadie recuerda haber empezado el viaje.',
@@ -338,6 +399,7 @@ const SEED=[
   links:[{t:'Wiki',u:'https://nomanssky.fandom.com/wiki/No_Man%27s_Sky_Wiki'}]},
 
  {id:'d4',l:'cold',p:20,n:'Diablo IV',tags:['arpg'],last:NOW-70*D,
+  dev:'Blizzard',year:'2023',plat:'',saga:'Diablo',hours:0,score:0,
   s:'Nigromante · build Monarca de las Sombras',
   x:'Magos de Sombra, Segadores y Explosion de Cadaveres era el plan. Sin seguimiento desde hace tiempo.',
   lore:'Lilith volvio al Santuario, y el mundo que hizo con Inarius nunca fue del cielo ni del infierno: fue de ella.',
@@ -345,6 +407,7 @@ const SEED=[
   links:[{t:'Mapa',u:'https://mapgenie.io/diablo-4'}]},
 
  {id:'swo',l:'cold',p:18,n:'Star Wars Outlaws',tags:['ubisoft','gfn'],last:NOW-52*D,
+  dev:'Massive Entertainment',year:'2024',plat:'Ubisoft+',saga:'Star Wars',hours:0,score:0,
   s:'Explorando Toshara',
   x:'Ahora incluido en tu Ubisoft+ con ediciones premium. Retomarlo sale gratis.',
   lore:'Entre El Imperio Contraataca y El Retorno del Jedi. Kay Vess es una ladrona de poca monta en una galaxia donde los sindicatos mandan mas que el Imperio.',
@@ -352,6 +415,7 @@ const SEED=[
   links:[{t:'Mapa',u:'https://mapgenie.io/star-wars-outlaws'}]},
 
  {id:'mc',l:'cold',p:45,n:'Minecraft BigChadGuys+',tags:['coop','barbi'],last:NOW-40*D,
+  dev:'Mojang (modpack)',year:'2011',plat:'Aternos',saga:'Minecraft',hours:0,score:0,
   s:'Con Cobblemon · andando en Aternos',
   x:'Alternativa: exportar server pack de CurseForge mas playit.gg para hostear local sin colas.',
   lore:'',
@@ -359,6 +423,7 @@ const SEED=[
   links:[]},
 
  {id:'clv',l:'cold',p:30,n:'CloverPit',tags:['roguelite','steam'],last:NOW-25*D,
+  dev:'',year:'',plat:'Steam',saga:'',hours:0,score:0,
   s:'Deadline 8 · 362k monedas',
   x:'Correcciones sin aplicar: comprometer un solo simbolo, charm de remocion, Wood and Bricks para el puente de interes.',
   lore:'',
@@ -366,6 +431,7 @@ const SEED=[
   links:[]},
 
  {id:'mgb',l:'cold',p:15,n:'Megabonk',tags:['roguelite','steam'],last:NOW-33*D,
+  dev:'',year:'',plat:'Steam',saga:'',hours:0,score:0,
   s:'Build de Noelle o Fox sugerida',
   x:'Katana, Dexecutioner y Flamewalker. Tomos Damage, Cursed, XP y Chaos. Desbloquear slots antes que personajes.',
   lore:'',
@@ -373,6 +439,7 @@ const SEED=[
   links:[]},
 
  {id:'tbh',l:'cold',p:50,n:'Taskbar Hero',tags:['idle'],last:NOW-60*D,
+  dev:'',year:'',plat:'',saga:'',hours:0,score:0,
   s:'Nv.65 · Caballero',
   x:'El juego que definio tu criterio de loot con peso. Vale la pena volver de vez en cuando.',
   lore:'',
@@ -380,6 +447,7 @@ const SEED=[
   links:[]},
 
  {id:'ds',l:'cold',p:5,n:'Death Stranding',tags:['epic','gfn'],last:NOW-46*D,
+  dev:'Kojima Productions',year:'2019',plat:'Epic Games',saga:'Death Stranding',hours:0,score:0,
   s:'Descubierto en la biblioteca',
   x:'No es ARPG ni tiene loot con peso. Dale hasta el segundo episodio antes de juzgar.',
   lore:'America se rompio y lo que quedo son bunkers separados por lluvia que envejece lo que toca. Sam Porter Bridges carga cajas a traves de un continente porque alguien tiene que hacerlo.',
@@ -387,6 +455,7 @@ const SEED=[
   links:[]},
 
  {id:'dai',l:'cold',p:0,n:'Dragon Age Inquisition',tags:['rpg','ea'],last:0,
+  dev:'BioWare',year:'2014',plat:'EA Play',saga:'Dragon Age',hours:0,score:0,
   s:'Gratis en EA Play · nunca iniciado',
   x:'Sal del Hinterlands rapido, es la trampa que quema a todos. Elfo picaro asesino era el plan.',
   lore:'El cielo se abrio sobre Thedas y tu saliste caminando del agujero sin recordar como. Eso basta para que medio mundo te llame profeta y el otro medio quiera matarte.',
@@ -394,6 +463,7 @@ const SEED=[
   links:[]},
 
  {id:'idl',l:'cold',p:35,n:'Idle Slayer',tags:['idle'],last:NOW-90*D,
+  dev:'',year:'',plat:'',saga:'',hours:0,score:0,
   s:'Jugado un rato, quedo atras',
   x:'Sin plan activo.',
   lore:'',
@@ -401,6 +471,7 @@ const SEED=[
   links:[]},
 
  {id:'er',l:'done',p:90,n:'Elden Ring + DLC',tags:['souls'],last:NOW-120*D,
+  dev:'FromSoftware',year:'2022',plat:'',saga:'Elden Ring',hours:0,score:0,
   s:'Malenia caida · DLC hasta Consorte Radahn',
   x:'Interrumpido por el equipo, no por falta de ganas.',
   lore:'El Circulo de Elden se rompio y los semidioses se repartieron los fragmentos como carronia. Tu eres un Sinluz: alguien a quien la Gracia abandono y despues volvio a llamar.',
@@ -408,6 +479,7 @@ const SEED=[
   links:[{t:'Mapa',u:'https://mapgenie.io/elden-ring'},{t:'Wiki',u:'https://eldenring.wiki.fextralife.com/'}]},
 
  {id:'sm2',l:'done',p:100,n:'Space Marine 2',tags:['accion'],last:NOW-100*D,
+  dev:'Saber Interactive',year:'2024',plat:'',saga:'Warhammer 40.000',hours:0,score:0,
   s:'Jugado y disfrutado',
   x:'Descartado como referencia de genero: es shooter-brawler, no ARPG de progresion.',
   lore:'M42. Los Tiranidos llegaron a Avarax y el Imperio responde con lo unico que sabe: mandar Astartes y contar bajas despues.',
@@ -417,14 +489,13 @@ const SEED=[
 
 /* ---------------- estado ---------------- */
 let items=SEED.map(o=>({...o}));
-let active=null;      // id de la Experiencia actual
-let focus=null;       // id que muestra la pantalla profunda
-let open=false;       // pantalla profunda abierta
+let active=null;   // el juego que estas jugando ahora
+let focus=null;    // el que muestra el hero (por defecto, el activo)
 let fS='all', fT='all', fQ='';
 let more={};
+let canStore=true, lastSaved=0;
 
 const $=s=>document.querySelector(s);
-const mk=$('#mk'); let ft=null, st=null;
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const byId=id=>items.find(i=>i.id===id);
 const laneName=k=>(LANES.find(L=>L.k===k)||{t:'?'}).t;
@@ -443,49 +514,103 @@ function ago(ts){
   if(d<365)return 'hace '+Math.floor(d/30)+' meses';
   return 'hace mas de un ano';
 }
-function flash(m){mk.textContent=m;clearTimeout(ft);ft=setTimeout(()=>mk.textContent='',1500)}
-
-/* ---- Guardado local del navegador ---- */
-async function put(){
-  try{localStorage.setItem(KEY,JSON.stringify({v:2,items,active}));flash('Guardado');}
-  catch(e){flash('Error al guardar')}
+function stamp(){
+  const d=new Date(),z=n=>String(n).padStart(2,'0');
+  return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())+'_'+z(d.getHours())+z(d.getMinutes());
 }
+
+/* =========================================================
+   GUARDADO Y RESPALDO
+   - Se guarda en el navegador (localStorage).
+   - Antes de cada escritura, la version anterior pasa a una
+     copia de seguridad, para poder deshacer un desastre.
+   - Si el navegador bloquea el guardado, se avisa en pantalla.
+   ========================================================= */
+function storageOk(){
+  try{localStorage.setItem('__probe','1');localStorage.removeItem('__probe');return true}
+  catch(e){return false}
+}
+function payload(){return {v:3,items,active,saved:Date.now()}}
+
+/* Un respaldo solo sirve si se puede leer. Si lo guardado esta corrupto, NO lo
+   dejamos pisar la copia buena: seria destruir el unico salvavidas que queda. */
+function esRespaldoLegible(txt){
+  try{return !!migrate(JSON.parse(txt))}catch(e){return false}
+}
+
+function put(){
+  if(!canStore){status();return}
+  try{
+    const antes=localStorage.getItem(KEY);
+    if(antes && esRespaldoLegible(antes)) localStorage.setItem(PREV,antes);   // copia rodante
+    localStorage.setItem(KEY,JSON.stringify(payload()));
+    lastSaved=Date.now();
+  }catch(e){
+    canStore=false;
+    showWarn('El navegador rechazo el guardado (puede estar lleno o en modo incognito). Exporta un respaldo antes de cerrar la pagina.');
+  }
+  status();
+}
+let st=null;
 function save(){clearTimeout(st);st=setTimeout(put,300)}
 
-/* Migracion: acepta el formato viejo (un array pelado) y el nuevo (objeto con
-   items + active). Los campos nuevos que falten se rellenan desde SEED, para que
-   nada de lo que Juan haya editado antes se pierda. */
+function showWarn(msg){
+  const w=$('#warn'); $('#warnt').textContent=msg; w.hidden=false;
+}
+function status(){
+  const el=$('#dbs');
+  if(!canStore){el.className='bad';el.textContent='Sin guardado automatico - exporta un respaldo';return}
+  const n=items.length;
+  el.className='ok';
+  el.textContent=n+' titulos guardados en este navegador'+(lastSaved?' · ultimo guardado '+new Date(lastSaved).toLocaleTimeString():'');
+  try{$('#rstb').disabled=!localStorage.getItem(PREV)}catch(e){}
+}
+
+/* Acepta los tres formatos que ha tenido el archivo:
+   v1 = array pelado · v2 = {v:2,items,active} · v3 = igual + ficha.
+   Los campos que falten se rellenan desde SEED, asi nada editado se pierde. */
 function migrate(raw){
   let list=null, act=null;
   if(Array.isArray(raw)) list=raw;
   else if(raw && typeof raw==='object' && Array.isArray(raw.items)){list=raw.items; act=raw.active||null}
   if(!list || !list.length) return null;
   const base={}; SEED.forEach(s=>{base[s.id]=s});
+  const num=(v,d)=>typeof v==='number'&&isFinite(v)?v:d;
   const clean=list.map(it=>{
     if(!it || !it.id) return null;
     const b=base[it.id]||{};
+    const pick=(k,d)=>it[k]!=null?it[k]:(b[k]!=null?b[k]:d);
     return {
       id:String(it.id),
       l:LANES.some(L=>L.k===it.l)?it.l:(b.l||'cold'),
-      p:typeof it.p==='number'?Math.max(0,Math.min(100,it.p)):(b.p||0),
-      n:it.n||b.n||'Sin nombre',
-      tags:Array.isArray(it.tags)?it.tags:(b.tags||[]).slice(),
-      s:it.s!=null?it.s:(b.s||''),
-      x:it.x!=null?it.x:(b.x||''),
-      lore:it.lore!=null?it.lore:(b.lore||''),
-      stats:Array.isArray(it.stats)?it.stats:(b.stats||[]).map(o=>({...o})),
-      links:Array.isArray(it.links)?it.links:(b.links||[]).map(o=>({...o})),
-      last:typeof it.last==='number'?it.last:(b.last||0)
+      p:Math.max(0,Math.min(100,num(it.p,num(b.p,0)))),
+      n:pick('n','Sin nombre'),
+      tags:Array.isArray(it.tags)?it.tags.filter(t=>typeof t==='string'):(b.tags||[]).slice(),
+      s:pick('s',''), x:pick('x',''), lore:pick('lore',''),
+      dev:pick('dev',''), year:String(pick('year','')), plat:pick('plat',''), saga:pick('saga',''),
+      hours:Math.max(0,num(it.hours,num(b.hours,0))),
+      score:Math.max(0,Math.min(10,num(it.score,num(b.score,0)))),
+      stats:(Array.isArray(it.stats)?it.stats:(b.stats||[])).filter(o=>o&&o.k!=null).map(o=>({k:String(o.k),v:String(o.v==null?'':o.v)})),
+      links:(Array.isArray(it.links)?it.links:(b.links||[])).filter(o=>o&&safeUrl(o.u)).map(o=>({t:String(o.t||'Link'),u:safeUrl(o.u)})),
+      last:num(it.last,num(b.last,0))
     };
   }).filter(Boolean);
   return clean.length?{items:clean,active:act}:null;
 }
-async function pull(){
+
+function pull(){
+  canStore=storageOk();
+  if(!canStore){
+    showWarn('Tu navegador no permite guardar datos en esta pagina (suele pasar en modo incognito o con las cookies bloqueadas). Puedes usar la pagina, pero los cambios se pierden al cerrarla.');
+    return;
+  }
   try{
     const v=localStorage.getItem(KEY); if(!v)return;
     const d=migrate(JSON.parse(v));
-    if(d){items=d.items; active=d.active}
-  }catch(e){}
+    if(d){items=d.items; active=d.active; lastSaved=(JSON.parse(v).saved)||0}
+  }catch(e){
+    showWarn('Los datos guardados estaban danados y no se pudieron leer. Se cargo el catalogo por defecto. Si tienes un respaldo exportado, importalo ahora; si no, revisa "Restaurar copia".');
+  }
 }
 function pickActive(){
   if(active && byId(active))return;
@@ -494,81 +619,106 @@ function pickActive(){
   active=(live[0]||any[0]||{}).id||null;
 }
 
-/* ---------------- dashboard ---------------- */
-function recents(){
-  return items.filter(i=>i.id!==active&&i.last)
-              .sort((a,b)=>b.last-a.last).slice(0,RECENT);
+/* ---------------- exportar / importar ---------------- */
+function exportData(){
+  try{
+    const txt=JSON.stringify(payload(),null,2);
+    const url=URL.createObjectURL(new Blob([txt],{type:'application/json'}));
+    const a=document.createElement('a');
+    a.href=url; a.download='gaming-protocol_'+stamp()+'.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),2000);
+  }catch(e){alert('No se pudo generar el archivo de respaldo.')}
+}
+function applyImport(raw,origen){
+  const d=migrate(raw);
+  if(!d){alert('Ese archivo no tiene el formato de un respaldo de Gaming Protocol.');return false}
+  const ok=confirm('Vas a reemplazar los '+items.length+' titulos actuales por los '+d.items.length+' de '+origen+'.\n\nLo que tienes ahora quedara en "Restaurar copia" por si te arrepientes.\n\n Continuar?');
+  if(!ok)return false;
+  put();                       // deja lo actual en la copia de seguridad
+  items=d.items; active=d.active;
+  buildRails(); render(); put();
+  return true;
+}
+function restorePrev(){
+  try{
+    const v=localStorage.getItem(PREV);
+    if(!v){alert('No hay ninguna copia de seguridad todavia.');return}
+    applyImport(JSON.parse(v),'la copia de seguridad');
+  }catch(e){alert('La copia de seguridad no se pudo leer.')}
 }
 
-function renderCur(){
-  const it=byId(active);
-  const el=$('#cur');
-  el.className='fr cur'+(open&&focus===active?' on':'');
+/* ---------------- HERO ---------------- */
+function renderHeroSect(){
+  const distinto = focus && focus!==active;
+  $('#hsect').innerHTML = distinto
+    ? 'Viendo otro mundo <b>&middot; no es tu experiencia actual</b>'+
+      '<button class="btn" data-back="1">&#8592; Volver a la actual</button>'+
+      '<button class="btn" data-setactive="'+esc(focus)+'">Jugar este ahora</button>'
+    : 'Experiencia actual';
+}
+
+function renderHero(){
+  renderHeroSect();
+  const it=focus?byId(focus):null;
+  const h=$('#hero');
   if(!it){
-    el.innerHTML='<div class="none">Ningun universo cargado. Busca un juego en el backlog y pulsa "Cambiar de universo".</div>';
+    h.innerHTML='<div class="empty">Ningun universo cargado. Busca un juego en el backlog de abajo y pulsa "&iquest;Cambiar de universo?".</div>';
     return;
   }
-  el.dataset.focus=it.id;
-  el.innerHTML=
-    `<div class="knm">${esc(it.n)}</div>
-     <div class="ksub">${esc(it.s)}</div>
-     <div class="tgs">${it.tags.map(t=>`<span class="tg">${esc(t)}</span>`).join('')}</div>
-     <div class="kpct">${it.p}%</div>
-     <div class="bigbar"><i style="width:${it.p}%"></i></div>
-     <div class="khint">${esc(laneName(it.l))} &middot; ${esc(ago(it.last))} &middot; clic para abrir</div>`;
-}
+  const sq=[];
+  for(let v=1;v<=10;v++) sq.push(`<button class="sq${v<=it.score?' on':''}" data-score="${esc(it.id)}" data-v="${v}" title="${v}/10"></button>`);
 
-function renderWorlds(){
-  const list=recents();
-  $('#worlds').innerHTML = list.length ? list.map(i=>
-    `<button class="fr world${open&&focus===i.id?' on':''}" data-focus="${esc(i.id)}">
-       <div class="wn">${esc(i.n)}</div>
-       <div class="wm">${esc(ago(i.last))} &middot; ${i.p}%</div>
-       <div class="wb"><i style="width:${i.p}%"></i></div>
-     </button>`).join('')
-    : '<div class="none">Todavia no hay mundos recientes. Cada juego que lleves al panel aparece aqui.</div>';
-}
-
-function renderScreen(){
-  const sc=$('#screen');
-  const it=focus?byId(focus):null;
-  if(!open||!it){sc.className='fr screen';sc.innerHTML='';return}
-  sc.className='fr screen open';
-
-  const derived=[
-    {k:'ESTADO',v:laneName(it.l)},
-    {k:'PROGRESO',v:it.p+'%'},
-    {k:'ULTIMA VEZ',v:ago(it.last)},
-    {k:'EN EL PANEL',v:it.id===active?'Si':'No'}
-  ];
-
-  sc.innerHTML=
-  `<div class="sch">
+  h.innerHTML=
+  `<div class="hh">
      <div>
-       <div class="n1">${esc(it.n)}</div>
-       <div class="n2">${esc(it.s)}</div>
+       <div class="hn">${esc(it.n)}</div>
+       <div class="hs">${esc(it.s)}</div>
        <div class="tgs">${it.tags.map(t=>`<span class="tg">${esc(t)}</span>`).join('')}</div>
      </div>
-     <div class="nx"><button class="btn" data-close="1">Cerrar</button></div>
+     <div class="hr">
+       <div class="hp">${it.p}%</div>
+       <div class="hl">${esc(laneName(it.l))} &middot; ${esc(ago(it.last))}</div>
+     </div>
    </div>
 
-   <div class="scg">
+   <div class="blk">
+     <div class="bigbar"><i style="width:${it.p}%"></i></div>
+     <div class="ctl">
+       <button class="btn" data-sp="${esc(it.id)}" data-d="-5">-5</button>
+       <span class="pc">${it.p}%</span>
+       <button class="btn" data-sp="${esc(it.id)}" data-d="5">+5</button>
+       <span style="flex:1"></span>
+       <div class="mv">${LANES.filter(x=>x.k!==it.l).map(x=>
+         `<button class="btn" data-sm="${esc(it.id)}" data-l="${x.k}">${x.t}</button>`).join('')}</div>
+     </div>
+   </div>
+
+   <div class="hgrid">
      <div>
        <div class="blk">
-         <div class="ttl">Progreso</div>
-         <div class="bigbar"><i style="width:${it.p}%"></i></div>
-         <div class="ctl">
-           <button class="btn" data-sp="${esc(it.id)}" data-d="-5">-5</button>
-           <span class="pc">${it.p}%</span>
-           <button class="btn" data-sp="${esc(it.id)}" data-d="5">+5</button>
-           <button class="btn" data-sp="${esc(it.id)}" data-d="100">Completar</button>
+         <div class="ttl">Nota personal</div>
+         <div class="score">
+           <div class="sqs">${sq.join('')}</div>
+           ${it.score?`<span class="sv">${it.score}/10</span>`:'<span class="sv none">Sin nota</span>'}
+           ${it.score?`<button class="btn" data-score="${esc(it.id)}" data-v="0">Borrar</button>`:''}
+         </div>
+       </div>
+
+       <div class="blk">
+         <div class="ttl">Ficha</div>
+         <div class="ficha">
+           ${FIELDS.map(F=>`<label class="fld"><b>${F.t}</b>
+             <input data-f="${F.f}" data-id="${esc(it.id)}" value="${esc(it[F.f])}"
+               placeholder="${esc(F.ph)}" ${F.num?'inputmode="numeric"':''} maxlength="34"></label>`).join('')}
          </div>
        </div>
 
        <div class="blk">
          <div class="ttl">Estadisticas</div>
          <div class="stats">
-           ${derived.map(s=>`<div class="stat"><b>${esc(s.k)}</b><span>${esc(s.v)}</span></div>`).join('')}
+           <div class="stat"><b>ESTADO</b><span>${esc(laneName(it.l))}</span></div>
+           <div class="stat"><b>ULTIMA VEZ</b><span>${esc(ago(it.last))}</span></div>
            ${it.stats.map((s,ix)=>
              `<div class="stat"><b>${esc(s.k)}</b><span>${esc(s.v)}</span>
                 <button class="rm" data-rmstat="${esc(it.id)}" data-ix="${ix}" title="Quitar">&times;</button></div>`).join('')}
@@ -578,12 +728,6 @@ function renderScreen(){
            <input id="svv" placeholder="valor (ej: 78)" maxlength="24">
            <button class="btn" data-addstat="${esc(it.id)}">+</button>
          </div>
-       </div>
-
-       <div class="blk">
-         <div class="ttl">Mover a</div>
-         <div class="mv">${LANES.filter(x=>x.k!==it.l).map(x=>
-           `<button class="btn" data-sm="${esc(it.id)}" data-l="${x.k}">${x.t}</button>`).join('')}</div>
        </div>
      </div>
 
@@ -601,11 +745,10 @@ function renderScreen(){
        <div class="blk">
          <div class="ttl">Enlaces</div>
          <div class="lks">
-           ${it.links.length?it.links.map((L,ix)=>{
-             const u=safeUrl(L.u); if(!u)return '';
-             return `<span class="lk"><a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(L.t||'link')}</a>
-                     <button class="rm" data-rmlink="${esc(it.id)}" data-ix="${ix}" title="Quitar">&times;</button></span>`;
-           }).join(''):'<div class="none">Sin enlaces todavia.</div>'}
+           ${it.links.length?it.links.map((L,ix)=>
+             `<span class="lk"><a href="${esc(L.u)}" target="_blank" rel="noopener noreferrer">${esc(L.t)}</a>
+              <button class="rm" data-rmlink="${esc(it.id)}" data-ix="${ix}" title="Quitar">&times;</button></span>`).join('')
+            :'<div class="none">Sin enlaces todavia.</div>'}
          </div>
          <div class="mini">
            <input id="lkt" placeholder="nombre (ej: Mapa)" maxlength="18">
@@ -617,9 +760,18 @@ function renderScreen(){
    </div>`;
 }
 
-function renderDash(){renderCur();renderWorlds();renderScreen()}
+function renderWorlds(){
+  const list=items.filter(i=>i.id!==active&&i.last).sort((a,b)=>b.last-a.last).slice(0,RECENT);
+  $('#worlds').innerHTML = list.length ? list.map(i=>
+    `<button class="fr world${focus===i.id?' on':''}" data-focus="${esc(i.id)}">
+       <div class="wn">${esc(i.n)}</div>
+       <div class="wm">${esc(ago(i.last))} &middot; ${i.p}%</div>
+       <div class="wb"><i style="width:${i.p}%"></i></div>
+     </button>`).join('')
+    : '<div class="none">Todavia no hay mundos recientes. Cada juego que lleves al panel aparece aqui.</div>';
+}
 
-/* ---------------- backlog ---------------- */
+/* ---------------- BACKLOG ---------------- */
 function tagList(){return [...new Set(items.flatMap(i=>i.tags))].sort()}
 
 function buildRails(){
@@ -628,11 +780,17 @@ function buildRails(){
   $('#rt').innerHTML=`<button class="btn" data-t="all" aria-pressed="${fT==='all'}">Todas</button>`+
     tagList().map(t=>`<button class="btn" data-t="${esc(t)}" aria-pressed="${fT===t}">${esc(t)}</button>`).join('');
 }
-
 function matches(i){
   if(fT!=='all' && !i.tags.includes(fT)) return false;
   if(fQ && i.n.toLowerCase().indexOf(fQ)===-1) return false;
   return true;
+}
+function meta(i){
+  const bits=[];
+  if(i.year)bits.push(i.year);
+  if(i.dev)bits.push(i.dev);
+  if(i.score)bits.push(i.score+'/10');
+  return bits.join(' · ');
 }
 
 function renderLanes(){
@@ -648,17 +806,10 @@ function renderLanes(){
         <article class="card ${opened.includes(i.id)?'open':''}${i.id===active?' now':''}" data-id="${esc(i.id)}">
           <div class="nm">${esc(i.n)}</div>
           <div class="st">${esc(i.s)}</div>
+          ${meta(i)?`<div class="mt">${esc(meta(i))}</div>`:''}
           <div class="tgs">${i.tags.map(t=>`<span class="tg">${esc(t)}</span>`).join('')}</div>
           <div class="bw"><i style="width:${i.p}%"></i></div>
           <div class="exp">
-            <div class="ttl">Siguiente paso</div>
-            <textarea data-x="${esc(i.id)}">${esc(i.x)}</textarea>
-            <div class="ttl">Progreso</div>
-            <div class="ctl">
-              <button class="btn" data-d="-5" data-p="${esc(i.id)}">-5</button>
-              <span class="pc">${i.p}%</span>
-              <button class="btn" data-d="5" data-p="${esc(i.id)}">+5</button>
-            </div>
             <div class="ttl">Mover a</div>
             <div class="mv">${LANES.filter(x=>x.k!==i.l).map(x=>
               `<button class="btn" data-m="${esc(i.id)}" data-l="${x.k}">${x.t}</button>`).join('')}
@@ -667,31 +818,39 @@ function renderLanes(){
               ? '<button class="btn swap" disabled>&#9632; Universo actual</button>'
               : `<button class="btn swap" data-swap="${esc(i.id)}">&iquest;Cambiar de universo?</button>`}
           </div>
-        </article>`).join('')+(full.length>CAP&&!searching?`<div class="morebar"><button class="btn" data-more="${L.k}">${more[L.k]?'- Ver menos':'+ Ver '+hid+' mas'}</button></div>`:''):'<div style="color:var(--faint);font-size:17px;padding:6px 2px">Vacio</div>'}
+        </article>`).join('')+(full.length>CAP&&!searching?`<div class="morebar"><button class="btn" data-more="${L.k}">${more[L.k]?'- Ver menos':'+ Ver '+hid+' mas'}</button></div>`:''):'<div class="none" style="padding:6px 2px">Vacio</div>'}
       </div></section>`;
   }).join('');
-
-  const n=items.filter(matches).length;
-  $('#qn').textContent = fQ ? n+' de '+items.length+' coinciden' : items.length+' titulos';
+  $('#qn').textContent = fQ ? items.filter(matches).length+' de '+items.length+' coinciden' : items.length+' titulos';
 }
 
 function renderXp(){
   const tot=items.length?Math.round(items.reduce((a,b)=>a+b.p,0)/items.length):0;
   $('#xpf').style.width=tot+'%'; $('#xpn').textContent=tot+'%';
 }
-
-function render(){pickActive();renderDash();renderLanes();renderXp()}
+function render(){
+  pickActive();
+  if(!focus||!byId(focus))focus=active;
+  renderHero();renderWorlds();renderLanes();renderXp();status();
+}
 
 /* ---------------- eventos: dashboard ---------------- */
 $('#dash').addEventListener('click',e=>{
   const t=e.target;
-  if(t.closest('a'))return;                       // dejar pasar los enlaces
+  if(t.closest('a'))return;
 
-  if(t.closest('[data-close]')){open=false;renderDash();return}
+  if(t.closest('[data-back]')){focus=active;render();return}
+
+  const sa=t.closest('[data-setactive]');
+  if(sa){const it=byId(sa.dataset.setactive);it.last=Date.now();active=it.id;render();save();return}
+
+  const sc=t.closest('[data-score]');
+  if(sc){const it=byId(sc.dataset.score);const v=+sc.dataset.v;
+    it.score=(it.score===v)?0:v;render();save();return}
 
   const sp=t.closest('[data-sp]');
-  if(sp){const it=byId(sp.dataset.sp);const d=+sp.dataset.d;
-    it.p=d===100?100:Math.max(0,Math.min(100,it.p+d));render();save();return}
+  if(sp){const it=byId(sp.dataset.sp);
+    it.p=Math.max(0,Math.min(100,it.p+ +sp.dataset.d));render();save();return}
 
   const sm=t.closest('[data-sm]');
   if(sm){byId(sm.dataset.sm).l=sm.dataset.l;render();save();return}
@@ -700,60 +859,58 @@ $('#dash').addEventListener('click',e=>{
   if(as){const it=byId(as.dataset.addstat);
     const k=$('#skk').value.trim(), v=$('#svv').value.trim();
     if(!k&&!v)return;
-    it.stats.push({k:(k||'DATO').toUpperCase(),v:v||'-'});renderScreen();save();return}
+    it.stats.push({k:(k||'DATO').toUpperCase(),v:v||'-'});renderHero();save();return}
 
   const rs=t.closest('[data-rmstat]');
-  if(rs){byId(rs.dataset.rmstat).stats.splice(+rs.dataset.ix,1);renderScreen();save();return}
+  if(rs){byId(rs.dataset.rmstat).stats.splice(+rs.dataset.ix,1);renderHero();save();return}
 
   const al=t.closest('[data-addlink]');
   if(al){const it=byId(al.dataset.addlink);
     const tt=$('#lkt').value.trim(), uu=safeUrl($('#lku').value);
-    if(!uu){flash('Enlace invalido');return}
-    it.links.push({t:tt||'Link',u:uu});renderScreen();save();return}
+    if(!uu){alert('Ese enlace no es valido. Debe ser una direccion web (http o https).');return}
+    it.links.push({t:tt||'Link',u:uu});renderHero();save();return}
 
   const rl=t.closest('[data-rmlink]');
-  if(rl){byId(rl.dataset.rmlink).links.splice(+rl.dataset.ix,1);renderScreen();save();return}
+  if(rl){byId(rl.dataset.rmlink).links.splice(+rl.dataset.ix,1);renderHero();save();return}
 
   const fo=t.closest('[data-focus]');
-  if(fo){
-    const id=fo.dataset.focus;
-    if(open&&focus===id){open=false} else {focus=id;open=true}
-    renderDash();return;
-  }
+  if(fo){focus=fo.dataset.focus;render();
+    $('#hero').scrollIntoView({behavior:'smooth',block:'nearest'});return}
 });
+
 $('#dash').addEventListener('input',e=>{
-  const el=e.target;
-  if(el.dataset.lore){byId(el.dataset.lore).lore=el.value;save();return}
-  if(el.dataset.sx){byId(el.dataset.sx).x=el.value;save();return}
+  const el=e.target, d=el.dataset;
+  if(d.lore){byId(d.lore).lore=el.value;save();return}
+  if(d.sx){byId(d.sx).x=el.value;save();return}
+  if(d.f){
+    const it=byId(d.id); if(!it)return;
+    it[d.f] = d.f==='hours' ? Math.max(0,parseInt(el.value.replace(/\D/g,''),10)||0) : el.value;
+    save();return;
+  }
 });
 
 /* ---------------- eventos: backlog ---------------- */
 $('#lanes').addEventListener('click',e=>{
   const t=e.target;
-  const pb=t.closest('[data-p]');
-  if(pb){const it=byId(pb.dataset.p);it.p=Math.max(0,Math.min(100,it.p+ +pb.dataset.d));render();save();return}
   const mb=t.closest('[data-m]');
   if(mb){byId(mb.dataset.m).l=mb.dataset.l;render();save();return}
   const db=t.closest('[data-del]');
-  if(db){const id=db.dataset.del;items=items.filter(i=>i.id!==id);
-    if(active===id)active=null; if(focus===id){focus=null;open=false}
+  if(db){const id=db.dataset.del, it=byId(id);
+    if(!confirm('Borrar "'+it.n+'" del backlog? Esto no se puede deshacer desde la pagina.'))return;
+    items=items.filter(i=>i.id!==id);
+    if(active===id)active=null; if(focus===id)focus=null;
     buildRails();render();save();return}
   const mo=t.closest('[data-more]');
   if(mo){more[mo.dataset.more]=!more[mo.dataset.more];renderLanes();return}
   const sw=t.closest('[data-swap]');
   if(sw){
     const it=byId(sw.dataset.swap);
-    it.last=Date.now(); active=it.id; focus=it.id; open=true;
-    render();save();flash('Universo cargado');
+    it.last=Date.now(); active=it.id; focus=it.id;
+    render();save();
     $('#dash').scrollIntoView({behavior:'smooth',block:'start'});
     return;
   }
-  if(t.tagName==='TEXTAREA')return;
   const c=t.closest('.card'); if(c)c.classList.toggle('open');
-});
-$('#lanes').addEventListener('input',e=>{
-  const x=e.target.dataset.x; if(!x)return;
-  byId(x).x=e.target.value; save();
 });
 
 $('#rs').addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(!b)return;fS=b.dataset.s;buildRails();renderLanes()});
@@ -764,12 +921,34 @@ $('#addb').addEventListener('click',()=>{
   const n=$('#ni').value.trim(); if(!n)return;
   const tg=$('#ti').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
   items.unshift({id:'g'+Date.now(),l:'cold',p:0,n,tags:tg.length?tg:['nuevo'],
-    s:'Recien agregado',x:'Sin notas todavia.',lore:'',stats:[],links:[],last:0});
+    s:'Recien agregado',x:'Sin notas todavia.',lore:'',
+    dev:'',year:'',plat:'',saga:'',hours:0,score:0,stats:[],links:[],last:0});
   $('#ni').value='';$('#ti').value='';
   buildRails();render();save();
 });
 
-pull().then(()=>{buildRails();render()});
+/* ---------------- eventos: datos ---------------- */
+$('#expb').addEventListener('click',exportData);
+$('#rstb').addEventListener('click',restorePrev);
+$('#impb').addEventListener('click',()=>$('#imp').click());
+$('#imp').addEventListener('change',e=>{
+  const f=e.target.files&&e.target.files[0];
+  e.target.value='';
+  if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{applyImport(JSON.parse(r.result),'"'+f.name+'"')}
+               catch(err){alert('Ese archivo no es un JSON valido.')}};
+  r.onerror=()=>alert('No se pudo leer el archivo.');
+  r.readAsText(f);
+});
+
+/* ---------------- arranque ---------------- */
+pull();
+buildRails();
+render();
+/* Primera visita: dejar el catalogo guardado de inmediato, para que la barra de
+   datos diga la verdad y no exista una ventana en la que nada esta persistido. */
+try{ if(canStore && !localStorage.getItem(KEY)) put(); }catch(e){}
 })();
 </script>
 
