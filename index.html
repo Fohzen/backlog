@@ -75,6 +75,9 @@
 #px .lane[data-k="cold"] .dot{background:var(--cold)} #px .lane[data-k="cold"] h2{color:var(--cold)}
 #px .lane[data-k="done"] .dot{background:var(--done)} #px .lane[data-k="done"] h2{color:var(--done)}
 #px .lb2{padding:9px}
+#px .morebar{margin-top:8px}
+#px .morebar .btn{width:100%;padding:7px 6px;color:var(--faint)}
+#px .morebar .btn:hover{color:var(--text)}
 
 /* card */
 #px .card{background:var(--lift);border:3px solid var(--line);padding:9px 10px;margin-bottom:8px;cursor:pointer;
@@ -160,6 +163,7 @@ const LANES=[
  {k:'live',t:'EN CURSO'},{k:'hold',t:'EN PAUSA'},
  {k:'cold',t:'ENFRIANDOSE'},{k:'done',t:'CERRADOS'}
 ];
+const CAP=5;
 
 const SEED=[
  {id:'khazan',l:'live',p:70,n:'The First Berserker: Khazan',tags:['souls','steam'],
@@ -232,6 +236,7 @@ const SEED=[
 
 let items=SEED.map(o=>({...o}));
 let fS='all', fT='all';
+let more={};
 const $=s=>document.querySelector(s);
 const mk=$('#mk'); let ft=null, st=null;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -254,10 +259,12 @@ function buildRails(){
 function render(){
   const open=[...document.querySelectorAll('.card.open')].map(c=>c.dataset.id);
   $('#lanes').innerHTML=LANES.map(L=>{
-    const list=items.filter(i=>i.l===L.k && (fT==='all'||i.tags.includes(fT)));
+    const full=items.filter(i=>i.l===L.k && (fT==='all'||i.tags.includes(fT)));
+    const list=more[L.k]?full:full.slice(0,CAP);
+    const hid=full.length-list.length;
     return `<section class="lane fr ${fS!=='all'&&fS!==L.k?'off':''}" data-k="${L.k}">
-      <div class="lh"><span class="dot"></span><h2>${L.t}</h2><span class="ct">${list.length}</span></div>
-      <div class="lb2">${list.length?list.map(i=>`
+      <div class="lh"><span class="dot"></span><h2>${L.t}</h2><span class="ct">${hid?list.length+'/'+full.length:full.length}</span></div>
+      <div class="lb2">${full.length?list.map(i=>`
         <article class="card ${open.includes(i.id)?'open':''}" data-id="${i.id}">
           <div class="nm">${esc(i.n)}</div>
           <div class="st">${esc(i.s)}</div>
@@ -277,7 +284,7 @@ function render(){
               `<button class="btn" data-m="${i.id}" data-l="${x.k}">${x.t}</button>`).join('')}
               <button class="btn" data-del="${i.id}">Borrar</button></div>
           </div>
-        </article>`).join(''):'<div style="color:var(--faint);font-size:17px;padding:6px 2px">Vacio</div>'}
+        </article>`).join('')+(full.length>CAP?`<div class="morebar"><button class="btn" data-more="${L.k}">${more[L.k]?'- Ver menos':'+ Ver '+hid+' mas'}</button></div>`:''):'<div style="color:var(--faint);font-size:17px;padding:6px 2px">Vacio</div>'}
       </div></section>`;
   }).join('');
 
@@ -293,6 +300,8 @@ $('#lanes').addEventListener('click',e=>{
   if(mb){const it=items.find(i=>i.id===mb.dataset.m);it.l=mb.dataset.l;render();save();return}
   const db=t.closest('[data-del]');
   if(db){items=items.filter(i=>i.id!==db.dataset.del);buildRails();render();save();return}
+  const mo=t.closest('[data-more]');
+  if(mo){more[mo.dataset.more]=!more[mo.dataset.more];render();return}
   if(t.tagName==='TEXTAREA')return;
   const c=t.closest('.card'); if(c)c.classList.toggle('open');
 });
