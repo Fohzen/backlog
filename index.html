@@ -212,6 +212,23 @@
 #px .databar .dbi span.bad{color:var(--hot)}
 #px .databar .dbb{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
 #px .ft{text-align:center;color:var(--faint);font-size:17px;margin-top:20px}
+/* ---------- T4: respuesta e interaccion ---------- */
+#px button,#px a,#px input,#px textarea{transition:color .12s steps(2),background-color .12s steps(2),border-color .12s steps(2),box-shadow .12s steps(2),transform .12s steps(2)}
+#px :focus-visible{outline:3px solid var(--cold);outline-offset:3px}
+#px .btn:hover{transform:translateY(-2px);box-shadow:inset 2px 2px 0 rgba(255,255,255,.12),inset -2px -2px 0 rgba(0,0,0,.5),0 3px 0 var(--line)}
+#px .btn:active{transform:translateY(2px)}
+#px .card,#px .world{transition:transform .14s steps(3),border-color .14s steps(3),box-shadow .14s steps(3)}
+#px .card:hover,#px .world:hover{transform:translateY(-2px);border-color:var(--edge);box-shadow:inset 2px 2px 0 rgba(255,255,255,.08),inset -2px -2px 0 rgba(0,0,0,.4),0 3px 0 var(--line)}
+#px .card.now{box-shadow:inset 3px 0 0 var(--live),inset 2px 2px 0 rgba(255,255,255,.05),inset -2px -2px 0 rgba(0,0,0,.4)}
+#px .world.on{box-shadow:inset 3px 0 0 var(--hold),inset 2px 2px 0 rgba(255,255,255,.05),inset -2px -2px 0 rgba(0,0,0,.4)}
+#px .sq{transition:transform .12s steps(2),background-color .12s steps(2),box-shadow .12s steps(2)}
+#px .sq:hover{transform:translateY(-3px);box-shadow:0 3px 0 var(--line)}
+#px .bigbar i,#px .xpbar i,#px .bw i,#px .world .wb i{transition:width .45s steps(12)}
+#px .hero{animation:t4-enter .24s steps(5) both}
+@keyframes t4-enter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+  #px *,#px *::before,#px *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
 @media(max-width:620px){
   #px .hd h1{font-size:15px}
   #px .hh .hn{font-size:12px}
